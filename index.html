@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Teddy Day, My Love</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --sky: #9ed7f8;
+        --grass: #7ecf72;
+        --sunset: #ffd6a5;
+        --tree: #2f8f4e;
+        --heart: #ff4d87;
+        --spark: #ffd166;
+        --ink: #2f2f3a;
+        --white: #fffaf7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow: hidden;
+        font-family: "Poppins", sans-serif;
+        color: var(--ink);
+        cursor: none;
+        background: linear-gradient(to bottom, var(--sky) 0%, #d6f1ff 55%, var(--grass) 55%, #63bc5e 100%);
+      }
+
+      .park {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 80% 18%, var(--sunset), transparent 18%),
+          radial-gradient(circle at 14% 70%, #5da15a 0 18%, transparent 19%),
+          radial-gradient(circle at 23% 66%, #529850 0 19%, transparent 20%),
+          radial-gradient(circle at 32% 68%, #5ea95c 0 17%, transparent 18%),
+          radial-gradient(circle at 69% 69%, #589d55 0 18%, transparent 19%),
+          radial-gradient(circle at 78% 65%, #64b060 0 17%, transparent 18%),
+          radial-gradient(circle at 87% 68%, #5ba858 0 16%, transparent 17%);
+      }
+
+      .tree {
+        position: absolute;
+        bottom: 26vh;
+        width: 22px;
+        height: 120px;
+        background: #865439;
+        border-radius: 30px;
+        box-shadow: 0 12px 18px rgba(0, 0, 0, 0.2);
+      }
+
+      .tree::before {
+        content: "";
+        position: absolute;
+        bottom: 55px;
+        left: 50%;
+        width: 130px;
+        height: 110px;
+        transform: translateX(-50%);
+        background: radial-gradient(circle at 38% 35%, #9de38f, #4f9a50 72%);
+        border-radius: 58% 42% 60% 40% / 45% 58% 42% 55%;
+      }
+
+      .tree.t1 { left: 8%; }
+      .tree.t2 { left: 23%; transform: scale(0.85); }
+      .tree.t3 { right: 8%; }
+      .tree.t4 { right: 24%; transform: scale(0.8); }
+
+      .message {
+        position: fixed;
+        top: 8vh;
+        width: 100%;
+        text-align: center;
+        z-index: 5;
+        pointer-events: none;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(2.4rem, 8vw, 5rem);
+        color: #e73f7c;
+        text-shadow: 0 8px 22px rgba(255, 255, 255, 0.8), 0 3px 10px rgba(231, 63, 124, 0.4);
+      }
+
+      .subtitle {
+        margin-top: 10px;
+        font-size: clamp(1rem, 2.6vw, 1.4rem);
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        color: #57385c;
+      }
+
+      .scene {
+        position: relative;
+        width: min(88vw, 540px);
+        height: min(72vh, 560px);
+        margin: 22vh auto 0;
+        perspective: 1200px;
+        transform-style: preserve-3d;
+      }
+
+      .panda {
+        position: absolute;
+        left: 50%;
+        bottom: 34px;
+        width: 260px;
+        height: 340px;
+        transform: translateX(-50%) rotateX(5deg);
+        transform-style: preserve-3d;
+        transition: transform 0.22s ease;
+        filter: drop-shadow(0 25px 24px rgba(0, 0, 0, 0.26));
+      }
+
+      .body,
+      .head,
+      .ear,
+      .eye-patch,
+      .snout,
+      .arm,
+      .leg,
+      .paw,
+      .heart {
+        position: absolute;
+        transform-style: preserve-3d;
+      }
+
+      .body {
+        width: 180px;
+        height: 190px;
+        background: linear-gradient(160deg, #fefefe, #dfe1e7);
+        border-radius: 48% 48% 44% 44%;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) translateZ(20px);
+      }
+
+      .head {
+        width: 200px;
+        height: 170px;
+        background: linear-gradient(140deg, #ffffff 0 64%, #d9dde2 100%);
+        border-radius: 48% 48% 45% 45%;
+        left: 50%;
+        top: 38px;
+        transform: translateX(-50%) translateZ(45px);
+      }
+
+      .ear {
+        width: 70px;
+        height: 72px;
+        background: radial-gradient(circle at 35% 32%, #52565f, #131419);
+        border-radius: 50%;
+        top: -22px;
+      }
+
+      .ear.left { left: 20px; transform: translateZ(-10px) rotate(-15deg); }
+      .ear.right { right: 20px; transform: translateZ(-10px) rotate(15deg); }
+
+      .eye-patch {
+        width: 50px;
+        height: 68px;
+        background: linear-gradient(170deg, #363842, #0f1016);
+        border-radius: 48% 52% 49% 51%;
+        top: 55px;
+      }
+
+      .eye-patch.left { left: 33px; transform: rotate(11deg); }
+      .eye-patch.right { right: 33px; transform: rotate(-11deg); }
+
+      .eye {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: #fefeff;
+        border-radius: 50%;
+        top: 24px;
+        left: 17px;
+      }
+
+      .eye::after {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #191a1f;
+        top: 4px;
+        left: 4px;
+      }
+
+      .snout {
+        width: 78px;
+        height: 58px;
+        border-radius: 48%;
+        background: linear-gradient(160deg, #f3f2f4, #d2d4da);
+        left: 50%;
+        top: 98px;
+        transform: translateX(-50%) translateZ(16px);
+      }
+
+      .nose {
+        position: absolute;
+        width: 24px;
+        height: 18px;
+        background: #1f212a;
+        border-radius: 50% 50% 44% 44%;
+        left: 50%;
+        top: 12px;
+        transform: translateX(-50%);
+      }
+
+      .smile {
+        position: absolute;
+        width: 32px;
+        height: 20px;
+        border-bottom: 3px solid #353742;
+        border-radius: 0 0 18px 18px;
+        left: 50%;
+        top: 30px;
+        transform: translateX(-50%);
+      }
+
+      .arm {
+        width: 62px;
+        height: 134px;
+        background: linear-gradient(170deg, #43464f, #1a1c24);
+        border-radius: 36px;
+        top: 150px;
+      }
+
+      .arm.left {
+        left: 26px;
+        transform: rotate(26deg) translateZ(14px);
+      }
+
+      .arm.right {
+        right: 26px;
+        transform: rotate(-26deg) translateZ(14px);
+      }
+
+      .leg {
+        width: 82px;
+        height: 90px;
+        background: linear-gradient(160deg, #3a3d46, #15161d);
+        border-radius: 44px 44px 42px 42px;
+        bottom: -16px;
+      }
+
+      .leg.left { left: 38px; transform: rotate(8deg); }
+      .leg.right { right: 38px; transform: rotate(-8deg); }
+
+      .heart {
+        width: 94px;
+        height: 84px;
+        left: 50%;
+        top: 186px;
+        transform: translateX(-50%) rotate(-2deg) translateZ(88px);
+        cursor: pointer;
+      }
+
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 78px;
+        background: linear-gradient(170deg, #ff88ad, var(--heart));
+        border-radius: 50px 50px 0 0;
+      }
+
+      .heart::before {
+        left: 45px;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+
+      .heart::after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+
+      .heart-glow {
+        position: absolute;
+        inset: -16px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 105, 150, 0.9), transparent 64%);
+        filter: blur(10px);
+        opacity: 0.65;
+        animation: pulse 2.2s infinite ease-in-out;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% { transform: scale(0.95); opacity: 0.4; }
+        50% { transform: scale(1.15); opacity: 0.9; }
+      }
+
+      .spark {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        pointer-events: none;
+        background: radial-gradient(circle, #fff, var(--spark));
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(255, 209, 102, 0.9);
+        animation: drift 0.9s linear forwards;
+        z-index: 30;
+      }
+
+      @keyframes drift {
+        to {
+          transform: translate(var(--dx), var(--dy)) scale(0);
+          opacity: 0;
+        }
+      }
+
+      .cursor {
+        position: fixed;
+        width: 24px;
+        height: 24px;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .cursor::before,
+      .cursor::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 18px;
+        background: var(--heart);
+        border-radius: 12px 12px 0 0;
+      }
+
+      .cursor::before {
+        left: 11px;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+
+      .cursor::after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+
+      .ground-shadow {
+        position: absolute;
+        width: 280px;
+        height: 54px;
+        background: radial-gradient(ellipse at center, rgba(39, 58, 36, 0.6), transparent 70%);
+        left: 50%;
+        bottom: 5px;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="park"></div>
+    <div class="tree t1"></div>
+    <div class="tree t2"></div>
+    <div class="tree t3"></div>
+    <div class="tree t4"></div>
+
+    <header class="message">
+      <h1>Happy Teddy Day, My Sweet Love ❤️</h1>
+      <p class="subtitle">A cuddly panda, a sparkling heart, and all my love for you.</p>
+    </header>
+
+    <main class="scene" aria-label="3D panda holding a heart in a park">
+      <div class="ground-shadow"></div>
+      <div class="panda" id="panda">
+        <div class="body"></div>
+        <div class="head">
+          <div class="ear left"></div>
+          <div class="ear right"></div>
+          <div class="eye-patch left"><div class="eye"></div></div>
+          <div class="eye-patch right"><div class="eye"></div></div>
+          <div class="snout">
+            <div class="nose"></div>
+            <div class="smile"></div>
+          </div>
+        </div>
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+        <div class="leg left"></div>
+        <div class="leg right"></div>
+        <div class="heart" id="heart" aria-label="Love symbol">
+          <div class="heart-glow"></div>
+        </div>
+      </div>
+    </main>
+
+    <div class="cursor" id="cursor"></div>
+
+    <script>
+      const panda = document.getElementById("panda");
+      const heart = document.getElementById("heart");
+      const cursor = document.getElementById("cursor");
+
+      let moveTick = 0;
+
+      const sparkle = (x, y, amount = 8) => {
+        for (let i = 0; i < amount; i += 1) {
+          const dot = document.createElement("span");
+          dot.className = "spark";
+          const dx = `${(Math.random() - 0.5) * 90}px`;
+          const dy = `${(Math.random() - 0.5) * 90}px`;
+          dot.style.left = `${x}px`;
+          dot.style.top = `${y}px`;
+          dot.style.setProperty("--dx", dx);
+          dot.style.setProperty("--dy", dy);
+          document.body.appendChild(dot);
+          setTimeout(() => dot.remove(), 900);
+        }
+      };
+
+      window.addEventListener("mousemove", (event) => {
+        const { clientX: x, clientY: y } = event;
+        cursor.style.left = `${x}px`;
+        cursor.style.top = `${y}px`;
+
+        const rotateY = ((x / window.innerWidth) - 0.5) * 24;
+        const rotateX = (((window.innerHeight - y) / window.innerHeight) - 0.5) * 10;
+        panda.style.transform = `translateX(-50%) rotateX(${5 + rotateX}deg) rotateY(${rotateY}deg)`;
+
+        moveTick += 1;
+        if (moveTick % 3 === 0) sparkle(x, y, 2);
+      });
+
+      heart.addEventListener("mouseenter", (event) => {
+        sparkle(event.clientX, event.clientY, 20);
+      });
+
+      heart.addEventListener("mousemove", (event) => {
+        sparkle(event.clientX, event.clientY, 6);
+      });
+
+      heart.addEventListener("click", (event) => {
+        sparkle(event.clientX, event.clientY, 26);
+      });
+    </script>
+  </body>
+</html>
